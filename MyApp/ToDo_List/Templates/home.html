@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<head>
+    <title>{% block title %}Homepage{% endblock %}</title>
+    
+</head>
+<body>
+    {% block content %}
+        <h1>Test Database Acces using Django</h1>
+        {% if messages  %}
+            {% for message in messages %}
+            
+            <div class="alert alert-success" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            {% endfor %}
+
+          {% endif %}     
+            
+        <table class="table table-hover table-bordered">
+            <tbody>
+              
+                {% if all_items %}
+                {% for things in all_items %}
+
+                  
+                {% if things.completed %}
+                <tr class="table-success">
+                <td>{{ things.item }}</td> 
+                <td> {{ things.completed }}</td>
+                <td><button type="button" class="btn btn-danger">Delete</button></td>
+                </tr>
+                {% else %}
+                <tr class="table-danger"></tr>
+                <td>{{ things.item }}</td> 
+                <td> {{ things.completed }}</td>
+                <td><button type="button" class="btn btn-danger">Delete</button></td>
+                </tr>
+                {% endif %}
+                
+                {% endfor %}
+                
+                {% endif %}
+                
+              </tbody>
+          </table>
+            
+
+    {% endblock %}
+</body>
+</html>
